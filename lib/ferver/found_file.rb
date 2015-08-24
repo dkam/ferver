@@ -1,6 +1,6 @@
 module Ferver
   class FoundFile
-    attr_reader :file_name, :path_to_file, :etag
+    attr_reader :file_name, :path_to_file, :etag, :mtime, :size
 
     alias_method :name, :file_name
 
@@ -8,6 +8,8 @@ module Ferver
       @file_name = file_name
       @path_to_file = File.join(directory, file_name)
       @etag = Digest::SHA1.hexdigest( File.read(@path_to_file ) ) if valid?
+      @mtime = File.mtime(@path_to_file) if valid?
+      @size = File.size(@path_to_file) if valid?
     end
 
     def valid?
