@@ -38,8 +38,14 @@ module Ferver
       end
     end
 
+    get '/manifest' do
+      content_type :json
+      ferver_list.map{ |f| { name: f.name, sha1: f.etag, last_modified: f.mtime, size: f.size} }.to_json
+    end
+
     # download file
     get '/files/:id' do
+      etag( @file.etag )
       send_file(
         @file.path_to_file, disposition: 'attachment', filename: @file.name
       )
