@@ -10,8 +10,8 @@ OptionParser.new do |opts|
   opts.banner = 'Ferver: A simple web app to serve files over HTTP. Version: ' + Ferver::VERSION
   opts.separator ''
 
-  opts.on('-i', '--invisible', 'Serve invisible files') do |i|
-    options[:invisible] = i
+  opts.on('-a', '--serve-all', 'Serve hidden files') do |a|
+    options[:hidden] = a
   end
 
   opts.on('-u', '--user [username]', 'Specify a username for authentication [optional]') do |user|
@@ -33,7 +33,7 @@ OptionParser.new do |opts|
 end.parse!
 
 Ferver.configure do |config|
-  config.serve_invisible = options[:invisible]
+  config.serve_hidden   = options[:hidden]
   config.user           = options[:user]
   config.password       = options[:password]
   config.directory_path = options[:directory]
