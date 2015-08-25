@@ -3,6 +3,7 @@
 require 'optparse'
 require 'sinatra'
 require 'ferver'
+require 'thin'
 
 options = {}
 OptionParser.new do |opts|
@@ -25,4 +26,12 @@ end
 Ferver::App.set :environment, :production
 
 # run!
-Ferver::App.run!
+Ferver::App.run! do |server|
+  ssl_options = {
+    cert_chain_file: '../client-certs/ca.crt',
+    private_key_file: '../client-certs/ca.key',
+    verify_peer: false,
+  }
+  server.ssl_options = ssl_options
+  server.ssl = true
+end
