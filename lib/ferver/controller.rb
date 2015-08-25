@@ -97,9 +97,8 @@ module Ferver
 
     def authorised?(user, password)
       return true if Fever.configuration.user.nil?
-      return true if user == Fever.configuration.user && password = Ferver.configuration.password
+      return true if user == Fever.configuration.user && password == Ferver.configuration.password
       return false
     end
-
   end
 end
