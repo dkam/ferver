@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra/base'
 require_relative './controller'
 
 module Ferver
@@ -8,6 +7,12 @@ module Ferver
 
     configure do
       set :views, './views'
+    end
+
+    if Ferver.configuration.username != nil
+      use Rack::Auth::Basic, "Ferver!"  do |username, password|
+        username == Ferver.configuration.username && password == Ferver.configuration.password
+      end 
     end
 
     use Controller
