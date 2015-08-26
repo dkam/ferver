@@ -1,4 +1,3 @@
-require 'sinatra'
 require 'sinatra/base'
 require 'json'
 require_relative './directory_not_found_error'
