@@ -9,7 +9,7 @@ module Ferver
       @path_to_file = File.join(directory, file_name)
       @mtime = File.mtime(@path_to_file) if valid?
       @size = File.size(@path_to_file) if valid?
-      @#etag = Digest::SHA1.hexdigest(File.read(@path_to_file)) if valid?
+      #@etag = Digest::SHA1.hexdigest(File.read(@path_to_file)) if valid?
       @etag = Digest::MD5.file(@path_to_file).hexdigest if valid?
     end
 
