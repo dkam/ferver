@@ -1,6 +1,6 @@
 module Ferver
   class Configuration
-    attr_accessor :directory_path, :serve_hidden, :user, :password
+    attr_accessor :directory_path, :serve_hidden, :user, :password, :recursive
 
     # Return the absolute path to the directory Ferver is serving files from.
     #
@@ -12,6 +12,10 @@ module Ferver
     #
     def serve_hidden
       @serve_hidden || false
+    end
+
+    def recursive
+      @recursive || false
     end
   end
 end
