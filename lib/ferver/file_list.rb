@@ -42,7 +42,6 @@ module Ferver
     def find_files
       @files = []
 
-      puts "Recursive: |#{Ferver.configuration.recursive}"
       files = Dir.foreach(configured_file_path)   if Ferver.configuration.recursive == false
       files = Dir.glob(File.join(configured_file_path , "**", "*"))  if Ferver.configuration.recursive == true
 
